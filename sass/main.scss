@@ -1,0 +1,60 @@
+@import "child";
+// 1 operators are supported in scss
+// 2 variables 
+// 3 nesting
+//4  variables
+//5  mixin
+// parameters
+//partials, it help us to write scss in different page after that we import that in our main scss file
+// Note for creating partial use underscore before the name so than complier ignore that
+// for exp: _child
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+// here We are telling browser that we have to take 1 rem as 10px 
+// by default 1rem = 16px but here we are telling that 1 rem will be equal to 62.5% of 16
+html {
+    font-size: 62.5%;
+}
+// when you are seeing a set of styling is using again and again then we use mixin and call that every time
+
+// for example
+
+@mixin flexprob {
+    display: flex;
+  flex-direction: column;
+  place-items:center;
+}
+// we can also pass tha parameter
+// we can pass multiple parameters too
+@mixin commoncode($ycolor) {
+      // operators
+      font-size: 5rem + 5rem;
+      color:$ycolor;
+}
+// declaring a variable
+$bg-color:aqua;
+.main_header{
+  width: 100vw;
+  height: 100vh;  
+  // calling mixin
+  @include flexprob;
+  background-color: $bg-color;
+  // performed nesting here
+h1{
+   @include commoncode(red);
+  
+    // performing inheritance & k upar jitne v parent h unko fatch kar lega
+    &:hover{
+        color: pink;
+    } 
+    &::after{
+        content: "Ashish";
+    }
+} 
+p{
+   @include commoncode(blue)
+}
+}
